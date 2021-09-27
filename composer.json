@@ -1,0 +1,25 @@
+{
+    "name": "m47730/takeaction",
+    "description": "",
+    "license": "proprietary",
+    "require": {
+        "phpunit/phpunit": "^9.5",
+        "liuggio/fastest": "^1.8",
+        "phpspec/phpspec": "^7.1"
+    },
+    "scripts": {
+        "test": [
+            "phpunit -c app/ --filter"
+        ],
+        "tests": [
+            "Composer\\Config::disableProcessTimeout",
+            "rm -Rf var/cache/test",
+            "rm -Rf var/logs/test.log",
+            "@php bin/console cache:warmup --env=test",
+            "find tests -name \"*Test.php\" | fastest \"phpunit -c app {};\" -vv --no-errors-summary"
+        ],
+        "tests-spec": [
+            "phpspec run"
+        ]
+    }    
+}
