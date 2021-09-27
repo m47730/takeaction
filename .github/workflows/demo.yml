@@ -8,8 +8,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Docker Compose Action
-      uses: isbang/compose-action@v1.0.0
+#    - name: Docker Compose Action
+#      uses: isbang/compose-action@v1.0.0
+
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
 
 #    - name: Validate composer.json and composer.lock
 #      run: composer validate --strict
